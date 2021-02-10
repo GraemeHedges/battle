@@ -1,26 +1,9 @@
-require 'sinatra'
+require 'sinatra/base'
 
-set :session_secret, 'super secret'
+class Battle < Sinatra::Base
+  get "/" do
+    "Hello Battle!"
+  end
 
-get '/' do
-  "Hello!"
-end
-
-get '/secret' do
-  "This is a secret page!"
-end
-
-get '/random-cat' do
-  @name = ["Muggins", "Stoofer", "Oliver"].sample
-  erb(:index)
-end
-
-post '/named-cat' do
-  p params[:name]
-  @name = params[:name]
-  erb(:index) 
-end
-
-get '/cat-form' do
-  erb(:cat_form)
+  run! if app_file == $0
 end
